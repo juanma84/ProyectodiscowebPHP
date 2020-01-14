@@ -7,3 +7,6 @@ function confirmarBorrar(nombre,id){
    document.location.href="?orden=Borrar&id="+id;
   }
 }
+
+
+

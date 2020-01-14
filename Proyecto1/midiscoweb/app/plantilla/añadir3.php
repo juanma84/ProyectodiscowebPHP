@@ -18,10 +18,12 @@
 		</ul>
 	</nav>
 	
-	<section><br><br>
+	<section>
 		<center>
-		<form action='index.php' class="formu3">
+		<br>
+		<form action='index.php' class="formu5">
 			<h2>Alta de Usuario</h2>
+			<h2>¡Atención!¡Las contraseñas no son correctas!</h2>
 			Usuario(id): <input name="iduser" type="text"><br>
 			Nombre: <input name="nombre" type="text"><br>
 			Contraseña: <input name="contra" type="text"><br>
@@ -40,7 +42,7 @@
 				<option value="A" >Activo</option>
 				<option value="I">Inactivo</option>
 				<option value="B">Bloqueado</option>
-			</select> <br><br><br>
+			</select> <br><br>
 			<input type='submit' name="orden" class="myButton" value='Alta Usuario'>
 			
 		</form>

@@ -18,35 +18,26 @@
 		</ul>
 	</nav>
 	
-	<section><br><br>
+	<section>
 		<center>
-		<form action='index.php' class="formu3">
-			<h2>Alta de Usuario</h2>
-			Usuario(id): <input name="iduser" type="text"><br>
-			Nombre: <input name="nombre" type="text"><br>
-			Contraseña: <input name="contra" type="text"><br>
-			Repita contraseña: <input name="contra2" type="text"><br>
-			Correo: <input name="correo" type="email"><br>
-			Tipo de usuario:
-			<select name="tipouser">
-				<option value="0" >Basico</option>
-				<option value="1">Profesional</option>
-				<option value="2">Premium</option>
-				<option value="3">Máster</option>
-			</select> <br>
-			
-			 Estado del usuario: 
-			 <select name="useracti">
-				<option value="A" >Activo</option>
-				<option value="I">Inactivo</option>
-				<option value="B">Bloqueado</option>
-			</select> <br><br><br>
-			<input type='submit' name="orden" class="myButton" value='Alta Usuario'>
-			
-		</form>
-		<form action='index.php' class="formuatras">
-			<input type='hidden' name='orden' value='VerUsuarios'><input type='submit' class="myButton" value='Atrás'>
-		</form>
+		<br><br><br><br>
+			<form action='index.php' class="formu2">
+				<input type='hidden' name='idfichero' value=<?php error_reporting(0); echo $_SESSION['0']?>>
+				<!--Usuario:<input name="iduser" type="text" value=<?php echo $_SESSION['0']?> disabled><br>-->
+				<h2>Nombre: <?php echo $_SESSION['0']?><br></h2>
+				Nombre:<input name="nombre" type="text" value=<?php echo $_SESSION['0']?>><br>
+				Tipo:<input name="tipo" type="text" value=<?php echo $_SESSION['1']?> disabled><br>
+				Tamaño:<input name="tamaño" type="text" value=<?php echo $_SESSION['2']?> disabled><br>
+				Extension:<input name="extension" type="text" value=<?php echo $_SESSION['3']?> disabled><br>
+				
+				
+				<br><br><br>
+				<input type='submit' name="orden" class="myButton" value='Actualizar Fichero'>
+				
+			</form>
+			<form action='index.php' class="formuatras">
+				<input type='hidden' name='orden' value='VerFicheros'><input type='submit' class="myButton" value='Atrás'>
+			</form>
 		</center>
 	</section>
 	

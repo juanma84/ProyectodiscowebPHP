@@ -4,56 +4,40 @@
 		<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/>
 		<link href="web/css/cabecera.css" rel="stylesheet" type="text/css" />
 		<link href="web/css/iniciar.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="web/js/funciones.js"></script>
-		</script>
+		<title>DiscoWeb</title>
 	</header>
-	
+		
 	<nav>	
 		<ul id="menu-bar">
 		<li><b><a href="../index.html"><img class="disco" src="../img/disco.png"></a></b></li>
 		 <li><a href="../index.html">Inicio</a></li>
-		 <li><a href="informacionutil.html">Información Útil</a></li>
-		 <li><a href="#">Modos</a>
-		  <ul>
-		   <li><a href="supervivencia.html">Supervivencia</a></li>
-		   <li><a href="creativo.html">Creativo</a></li>
-		   <li><a href="aventura.html">Aventura</a></li>
-		   <li><a href="extremo.html">Extremo</a></li>
-		  </ul>
-		 </li>
-		 <li><a href="#">Recetas</a>
-		  <ul>
-		   <li><a href="fabricacion.html">Fabricación</a></li>
-		   <li><a href="alquimia.html">Alquimia</a></li>
-		   <li><a href="fundicion.html">Fundicion</a></li>
-		  </ul>
-		 </li>
+		
 		 
 		 <li class="active" id="ini"><a href="iniciar.html">Iniciar Sesion</a></li> 
 		</ul>
 	</nav>
 	
-	<section><br><br><br><br>
+	<section><br><br><br><br><br><br><br>
 		<center>
 			<div id="content">
-				<table class="princ2" border="1">
+				<table class="princ2">
 					<tr>
-						<td><b>Campo</b></td>
-						<td><b>Detalles</b></td>
+						<th><b><center>Campo</center></b></th>
+						<th><b><center>Detalles</center></b></th>
 					</tr>
 					
 					<tr>
 						<td>Usuario:</td>
-						<td><?php echo $_SESSION['0']?></td>
+						<td><?php error_reporting(0); echo $_SESSION['0']?></td>
 					</tr>	
 					<tr>
 						<td>Nombre:</td>
 						<td><?php echo $_SESSION['2']?></td>
 					</tr>
-					<tr>
+					<!--  <tr>
 						<td>Contraseña:</td>
 						<td><?php echo $_SESSION['1']?></td>
-					</tr>	
+					</tr>	-->
 					<tr>
 						<td>Correo:</td>
 						<td><?php echo $_SESSION['3']?></td>

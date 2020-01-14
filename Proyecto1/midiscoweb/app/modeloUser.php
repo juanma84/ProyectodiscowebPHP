@@ -30,28 +30,75 @@ function modeloUserInit(){
 
 // Comprueba usuario y contraseña (boolean)
 function modeloOkUser($user,$clave){
-    return ($user=='admin') && ($clave =='12345');
+    //return ($user=='admin') && ($clave =='12345');
+    error_reporting(E_ERROR | E_WARNING | E_PARSE);
+	$datosjson = @file_get_contents(FILEUSER) or die("ERROR al abrir fichero de usuarios");
+    $tusuarios = json_decode($datosjson, true);
+    $_SESSION['tusuarios'] = $tusuarios;
+	
+
+	for($j=0;$j<10;$j++){
+		if(password_verify($clave, $_SESSION['tusuarios'][$user][0])){
+			return true;
+		}
+		//if($_SESSION['tusuarios'][$user][0]==$clave){
+			//return true;
+		//}
+		else{
+			return false;
+		}	
+	
+	}
 }
 
 
 // Devuelve el plan de usuario (String)
 function modeloObtenerTipo($user){
-    return "Máster";
+    //return "Máster";
+	$datosjson = @file_get_contents(FILEUSER) or die("ERROR al abrir fichero de usuarios");
+    $tusuarios = json_decode($datosjson, true);
+    $_SESSION['tusuarios'] = $tusuarios;
+	
+	for($j=0;$j<10;$j++){
+		if($_SESSION['tusuarios'][$user][3]=="0"){
+			return "Básico";
+		}
+		if($_SESSION['tusuarios'][$user][3]=="1"){
+			return "Profesional";
+		}
+		if($_SESSION['tusuarios'][$user][3]=="2"){
+			return "Premium";
+		}
+		if($_SESSION['tusuarios'][$user][3]=="3"){
+			return "Máster";
+		}
+	}
+	
 }
 
 
 // Borrar un usuario (boolean)
 function modeloUserDel($user){
     unset($_SESSION['tusuarios'][$user]);
-   
 	actualizarfichero();
 	
+	
+	$dir = "app/file/".$user."/";
+	foreach(scandir($dir) as $file) {
+        if ('.' === $file || '..' === $file) continue;
+        if (is_dir("$dir/$file")) rmdir_recursive("$dir/$file");
+        else unlink("$dir/$file");
+    }
+
+	
+	rmdir("app/file/".$user);
 	header('Location:index.php?orden=VerUsuarios');
 }
 
 // Añadir un nuevo usuario (boolean)
 function modeloUserAdd($id,$nombre,$contra,$correo,$tipouser,$useracti){	
-	
+	$clave = password_hash($contra, PASSWORD_DEFAULT, ['cost' => 10]);
+		
 	foreach ($_SESSION['tusuarios'] as $k => $v) {
 		echo "$k => $v.\n";
 		if($k==$id){
@@ -63,7 +110,7 @@ function modeloUserAdd($id,$nombre,$contra,$correo,$tipouser,$useracti){
 		header('Location:index.php?orden=AltaError');
 	}else{
 		array_push($_SESSION['tusuarios'][$id]);
-		$_SESSION['tusuarios'][$id][0]=$contra;
+		$_SESSION['tusuarios'][$id][0]=$clave;
 		$_SESSION['tusuarios'][$id][1]=$nombre;
 		$_SESSION['tusuarios'][$id][2]=$correo;
 		$_SESSION['tusuarios'][$id][3]=$tipouser;
@@ -72,8 +119,41 @@ function modeloUserAdd($id,$nombre,$contra,$correo,$tipouser,$useracti){
 		actualizarfichero();
 		
 		header('Location:index.php?orden=VerUsuarios');
+
 	}
 }
+
+
+// Añadir un nuevo usuario (boolean)
+function modeloUserAdd2($id,$nombre,$contra,$correo,$tipouser,$useracti){	
+	$clave = password_hash($contra, PASSWORD_DEFAULT, ['cost' => 10]);
+		
+	foreach ($_SESSION['tusuarios'] as $k => $v) {
+		echo "$k => $v.\n";
+		if($k==$id){
+			$var=1;
+		}
+	}
+	
+	if($var==1){
+		header('Location:index.php?orden=AltaError2');
+	}else{
+		array_push($_SESSION['tusuarios'][$id]);
+		$_SESSION['tusuarios'][$id][0]=$clave;
+		$_SESSION['tusuarios'][$id][1]=$nombre;
+		$_SESSION['tusuarios'][$id][2]=$correo;
+		$_SESSION['tusuarios'][$id][3]=$tipouser;
+		$_SESSION['tusuarios'][$id][4]=$useracti;
+			
+		actualizarfichero();
+		//include_once 'plantilla/facceso3.php';
+		//header('Location:index.php?orden=Inicio');
+		session_destroy();
+		modeloUserSave();
+		header('Location:index.php');
+	}
+}
+
 
 
 // Actualizar un nuevo usuario (boolean)
@@ -92,13 +172,23 @@ function modeloUserUpdate ($user){
 // Actualizar un nuevo usuario(de verdad) (boolean)
 function modeloUserUpdate2 ($id,$nombre,$contra,$correo,$tipouser,$useracti){
 	//echo $_SESSION['tusuarios'][$id][0];
+	$clave = password_hash($contra, PASSWORD_DEFAULT, ['cost' => 10]);
+	if($contra==$_SESSION['tusuarios'][$id][0]){
+		$_SESSION['tusuarios'][$id][1]=$nombre;
+		$_SESSION['tusuarios'][$id][2]=$correo;
+		$_SESSION['tusuarios'][$id][3]=$tipouser;
+		$_SESSION['tusuarios'][$id][4]=$useracti;
+		actualizarfichero();	
+	}else{
+		$_SESSION['tusuarios'][$id][0]=$clave;
+		$_SESSION['tusuarios'][$id][1]=$nombre;
+		$_SESSION['tusuarios'][$id][2]=$correo;
+		$_SESSION['tusuarios'][$id][3]=$tipouser;
+		$_SESSION['tusuarios'][$id][4]=$useracti;
+		actualizarfichero();	
+	}
 	
-	$_SESSION['tusuarios'][$id][0]=$contra;
-	$_SESSION['tusuarios'][$id][1]=$nombre;
-	$_SESSION['tusuarios'][$id][2]=$correo;
-	$_SESSION['tusuarios'][$id][3]=$tipouser;
-	$_SESSION['tusuarios'][$id][4]=$useracti;
-	actualizarfichero();	
+	
 	
 	header('Location:index.php?orden=VerUsuarios');
 }

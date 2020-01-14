@@ -113,9 +113,6 @@ color: gold;  background: red;
 	src:url(../fonts/Mansalva-Regular.ttf);		   
 }
 
-h2{
-   font-family:Mansalva;
-}
 
 
 @font-face{
@@ -123,15 +120,6 @@ h2{
 	src:url(../fonts/DancingScript-Regular.ttf);		   
 }	
 
-span{
-	font-family:DancingScript;
-}
-
- 
-p {
-  margin: 40px;
-  text-align:justify;
-}
 
 
 

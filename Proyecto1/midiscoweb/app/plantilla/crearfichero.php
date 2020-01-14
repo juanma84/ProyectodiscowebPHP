@@ -5,8 +5,8 @@
 		<link href="web/css/cabecera.css" rel="stylesheet" type="text/css" />
 		<link href="web/css/iniciar.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="web/js/funciones.js"></script>
-		<script type="text/javascript" src="web/js/jquery.js"></script>
-		<title>DiscoStu</title>
+		<title>DiscoWeb</title>
+		</script>
 	</header>
 	
 	<nav>	
@@ -15,15 +15,26 @@
 		 <li><a href="../index.html">Inicio</a></li>
 		
 		 
-		 <li class="active" id="ini"><a href="index.php?orden=VerUsuarios">Iniciar Sesion</a></li> 
+		 <li class="active" id="ini"><a href="iniciar.html">Iniciar Sesion</a></li> 
 		</ul>
 	</nav>
 	
 	<section><br>
-		<div id="content">
-		<?= $contenido ?>
-		</div>
+		<center>
+		<br><br><br><br><br>
+			<form action='index.php' class="formu4">
+				<h2>Creación de un fichero</h2>
+				Nombre del fichero: <input name="namefile" type="text"><br>
+				Extensión: <input name="extension" type="text"><br><br>
+				<input type='submit' name="orden" class="myButton" value='Crear Fichero'>
+				
+			</form>
+			<form action='index.php' class="formuatras">
+				<input type='hidden' name='orden' value='VerFicheros'><input type='submit' class="myButton" value='Atrás'>
+			</form>
+		</center>
 	</section>
+	
 	<footer class="final">	
 		<center><a href="http://www.facebook.es"><img src="../img/F.png" class="fotofacebook"/></a>
 		<a href="http://www.instagram.es"><img src="../img/I.png" class="fotoinsta"/></a>

@@ -5,7 +5,7 @@
 		<link href="web/css/cabecera.css" rel="stylesheet" type="text/css" />
 		<link href="web/css/iniciar.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="web/js/funciones.js"></script>
-		<title>DiscoStu</title>
+		<title>DiscoWeb</title>
 	</header>
 	
 	<nav>	
@@ -18,10 +18,13 @@
 		</ul>
 	</nav>
 	
-	<section><br><br>
+	<section>
 		<center>
-		<form action='index.php' class="formu3">
+		<br>
+		
+		<form action='index.php' class="formu5">
 			<h2>Alta de Usuario</h2>
+			<h2>¡Atención!¡El usuario ya existe!</h2>
 			Usuario(id): <input name="iduser" type="text"><br>
 			Nombre: <input name="nombre" type="text"><br>
 			Contraseña: <input name="contra" type="text"><br>
@@ -40,12 +43,12 @@
 				<option value="A" >Activo</option>
 				<option value="I">Inactivo</option>
 				<option value="B">Bloqueado</option>
-			</select> <br><br><br>
-			<input type='submit' name="orden" class="myButton" value='Alta Usuario'>
+			</select> <br><br>
+			<input type='submit' name="orden" class="myButton" value='Registrar Usuario'>
 			
 		</form>
 		<form action='index.php' class="formuatras">
-			<input type='hidden' name='orden' value='VerUsuarios'><input type='submit' class="myButton" value='Atrás'>
+			<input type='hidden' name='orden' value='Inicio'><input type='submit' class="myButton" value='Inicio'>
 		</form>
 		</center>
 	</section>
